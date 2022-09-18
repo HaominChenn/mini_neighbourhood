@@ -1,57 +1,21 @@
-import React, {useState, useEffect } from 'react';
-import { Container, AppBar, Typography, Grow, Grid } from '@material-ui/core';
-import appIcon from './images/appIcon.png';
-import Posts from './components/Posts/Posts.js';
-import Form from './components/Form/Form.js';
-import useStyles from './styles.js';
-import { useDispatch } from 'react-redux';
-import { getPosts } from './actions/posts.js';
+import React from 'react';
+import { Container } from '@material-ui/core';
 
-const App = () => {
-  const classes = useStyles();
-  const [currentId, setCurrentId] = useState(null);
- 
-  //a dispatch hook
-  const dispatch = useDispatch();
-  useEffect(() => {
-    //callback function
-     dispatch(getPosts())
-  }, [dispatch])
+import Navbar from './components/Navbar/Navbar.js';
+import Home from './components/Home/Home.js';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Auth from './components/Auth/Auth.js';
 
-  return (
+const App = () => (
+  <BrowserRouter>
     <Container maxWidth='lg'>
-      <AppBar className={classes.appBar} position='static' color='inherit'>
-        <Typography className={classes.heading} variant='h3' align='center'>
-          Mini Neighborhood
-        </Typography>
-        <img
-          className={classes.image}
-          src={appIcon}
-          alt='icon'
-          width='60'
-          height='60'
-        />
-      </AppBar>
-      <Grow in>
-        <Container>
-          <Grid
-          className={classes.mainContainer}
-            container
-            justify='space-between'
-            alignItems='stretch'
-            spacing={3}
-          >
-            <Grid item xs={12} sm={7}>
-              <Posts setCurrentId={setCurrentId}/>
-            </Grid>
-            <Grid item xs={12} sm={4}>
-              <Form currentId={currentId} setCurrentId={setCurrentId}/>
-            </Grid>
-          </Grid>
-        </Container>
-      </Grow>
+      <Navbar />
+      <Routes>
+        <Route path='/' exact element={<Home />} />
+        <Route path='/auth' exact element={<Auth />} />
+      </Routes>
     </Container>
-  );
-};
+  </BrowserRouter>
+);
 
 export default App;
