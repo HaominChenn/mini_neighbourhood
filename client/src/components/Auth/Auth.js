@@ -10,15 +10,35 @@ import {
 import useStyles from './styles';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Input from './Input.js';
+import { GoogleLogin } from '@react-oauth/google';
+import jwt_decode from 'jwt-decode';
+import { useDispatch } from 'react-redux';
+import { AUTH } from '../../constants/actionTypes.js';
+import { useNavigate } from 'react-router-dom';
 
 const Auth = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [isSignup, setIsSignup] = useState(false);
   const handleChange = () => {};
   const handleSubmit = () => {};
   const handleShowPassword = () =>
     setShowPassword((prevShowPassword) => !prevShowPassword);
+  const googleSuccess = async (credentialResponse) => {
+    try {
+      const token = credentialResponse.credential;
+      const result = jwt_decode(token);
+      console.log(result)
+      dispatch({ type: AUTH, data: { result, token } });
+
+
+      navigate('/');
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const switchMode = () => {
     setIsSignup((prevIsSignup) => !prevIsSignup);
@@ -84,6 +104,14 @@ const Auth = () => {
           >
             {isSignup ? 'Sign Up' : 'Sign In'}
           </Button>
+          <GoogleLogin
+            width='365'
+            onSuccess={googleSuccess}
+            onError={() => {
+              console.log('Login Failed');
+            }}
+          />
+
           <Grid container justify='flex-end'>
             <Grid item>
               <Button onClick={switchMode}>

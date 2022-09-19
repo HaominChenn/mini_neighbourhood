@@ -5,7 +5,7 @@ import Form from '../Form/Form.js';
 import { useDispatch } from 'react-redux';
 import { getPosts } from '../../actions/posts.js';
 import useStyles from './styles.js';
-import { GoogleLogin } from 'react-google-login';
+
 
 const Home = () => {
     const classes = useStyles();
