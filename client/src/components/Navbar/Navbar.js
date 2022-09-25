@@ -17,12 +17,12 @@ const Navbar = () => {
   console.log(user);
   const logout = () => {
     dispatch({ type: actionType.LOGOUT });
-navigate('/')
+    navigate('/');
     setUser(null);
   };
   useEffect(() => {
     const token = user?.token;
-   // if (token) {
+    // if (token) {
     //  const resultToken = decode(token);
     //  if (resultToken.exp * 1000 < new Date().getTime()) logout();
     //}

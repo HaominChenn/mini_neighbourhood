@@ -15,24 +15,42 @@ import jwt_decode from 'jwt-decode';
 import { useDispatch } from 'react-redux';
 import { AUTH } from '../../constants/actionTypes.js';
 import { useNavigate } from 'react-router-dom';
+import { signin, signup } from '../../actions/auth';
 
+const initialState = {
+  firstName: '',
+  lastName: '',
+  email: '',
+  password: '',
+  confirmPassword: '',
+};
 const Auth = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [formData, setFormData] = useState(initialState);
   const [showPassword, setShowPassword] = useState(false);
   const [isSignup, setIsSignup] = useState(false);
-  const handleChange = () => {};
-  const handleSubmit = () => {};
+  const handleChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleSubmit = (e) => {
+    console.log(formData);
+    e.preventDefault();
+
+    if (isSignup) {
+      dispatch(signup(formData, navigate));
+    } else {
+      dispatch(signin(formData, navigate));
+   }
+  };
   const handleShowPassword = () =>
     setShowPassword((prevShowPassword) => !prevShowPassword);
   const googleSuccess = async (credentialResponse) => {
     try {
       const token = credentialResponse.credential;
       const result = jwt_decode(token);
-      console.log(result)
+      console.log(result);
       dispatch({ type: AUTH, data: { result, token } });
-
 
       navigate('/');
     } catch (error) {

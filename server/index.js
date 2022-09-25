@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import postRoutes from './routes/posts.js';
+import userRoutes from './routes/users.js';
 
 // create an express application
 const app = express(); 
@@ -15,6 +16,7 @@ app.use(cors());
 
 //use express middleware connect this to our app nav to localhost:5000/posts
 app.use('/posts', postRoutes);
+app.use('/users',userRoutes)
 //const CONNECTION_URL = "mongodb+srv://haomin:haomin@minineighbourhood.krps8.mongodb.net/miniNeighbourhood?retryWrites=true&w=majority";
 const PORT= process.env.PORT || 5000;
 mongoose.connect(process.env.CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
