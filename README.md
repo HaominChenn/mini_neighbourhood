@@ -1,1 +1,4 @@
 # mini_neighbourhood
+Mini Neighborhood is a post-based community social app that only includes simple functions. They are post functions such as creating/editing/deleting/liking a post, login function with email (JWT) and google authentication and registration function with email.   
+To explain more, users can use their google account to log in to our website. They also can register on the website using email and log in by email. When they have logged in, they can create a post including a title, content, tag, and uploading a picture to share some news with neighbors. Also, they can edit a selected post they have created before to change the title, content, tag, and picture. If they do not need a post anymore, they can delete it. Moreover, they can click a thumb-up button to like a post.
+For the whole project, it is a MERN full-stack architecture which is React.js as client-side, Express.js and Node.js as server-side, and MongoDB for the database. 
