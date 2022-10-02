@@ -9,7 +9,7 @@ import useStyles from './styles.js';
 
 const Home = () => {
     const classes = useStyles();
-  const [currentId, setCurrentId] = useState(null);
+  const [currentId, setCurrentId] = useState(0);
 
   //a dispatch hook
   const dispatch = useDispatch();
@@ -24,7 +24,7 @@ const Home = () => {
         <Grid
           className={classes.mainContainer}
           container
-          justify='space-between'
+          justifyContent='space-between'
           alignItems='stretch'
           spacing={3}
         >

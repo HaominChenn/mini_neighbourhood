@@ -15,7 +15,8 @@ import jwt_decode from 'jwt-decode';
 import { useDispatch } from 'react-redux';
 import { AUTH } from '../../constants/actionTypes.js';
 import { useNavigate } from 'react-router-dom';
-import { signin, signup } from '../../actions/auth';
+import { signin, signup } from '../../actions/auth.js';
+//import { useHistory } from 'react-router-dom';
 
 const initialState = {
   firstName: '',
@@ -25,6 +26,7 @@ const initialState = {
   confirmPassword: '',
 };
 const Auth = () => {
+
   const classes = useStyles();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -39,8 +41,10 @@ const Auth = () => {
 
     if (isSignup) {
       dispatch(signup(formData, navigate));
+     
     } else {
       dispatch(signin(formData, navigate));
+  
    }
   };
   const handleShowPassword = () =>
@@ -51,7 +55,7 @@ const Auth = () => {
       const result = jwt_decode(token);
       console.log(result);
       dispatch({ type: AUTH, data: { result, token } });
-
+     // history.push('/');
       navigate('/');
     } catch (error) {
       console.log(error);
@@ -60,7 +64,7 @@ const Auth = () => {
 
   const switchMode = () => {
     setIsSignup((prevIsSignup) => !prevIsSignup);
-    handleShowPassword(false);
+   setShowPassword(false);
   };
 
   return (
@@ -130,7 +134,7 @@ const Auth = () => {
             }}
           />
 
-          <Grid container justify='flex-end'>
+          <Grid container justifyContent='flex-end'>
             <Grid item>
               <Button onClick={switchMode}>
                 {isSignup

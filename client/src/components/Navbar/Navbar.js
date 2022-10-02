@@ -22,10 +22,10 @@ const Navbar = () => {
   };
   useEffect(() => {
     const token = user?.token;
-    // if (token) {
-    //  const resultToken = decode(token);
-    //  if (resultToken.exp * 1000 < new Date().getTime()) logout();
-    //}
+    if (token) {
+      const resultToken = decode(token);
+      if (resultToken.exp * 1000 < new Date().getTime()) logout();
+    }
     setUser(JSON.parse(localStorage.getItem('profile')));
   }, [location]);
 
