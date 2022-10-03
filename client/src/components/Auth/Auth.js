@@ -25,6 +25,7 @@ const initialState = {
   password: '',
   confirmPassword: '',
 };
+
 const Auth = () => {
 
   const classes = useStyles();
@@ -55,7 +56,7 @@ const Auth = () => {
       const result = jwt_decode(token);
       console.log(result);
       dispatch({ type: AUTH, data: { result, token } });
-     // history.push('/');
+     
       navigate('/');
     } catch (error) {
       console.log(error);

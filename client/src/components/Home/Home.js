@@ -8,15 +8,16 @@ import useStyles from './styles.js';
 
 
 const Home = () => {
-    const classes = useStyles();
+  const classes = useStyles();
   const [currentId, setCurrentId] = useState(0);
 
   //a dispatch hook
   const dispatch = useDispatch();
+
   useEffect(() => {
-    //callback function
     dispatch(getPosts());
-  }, [dispatch]);
+   
+  }, [currentId, dispatch]);
 
   return (
     <Grow in>
