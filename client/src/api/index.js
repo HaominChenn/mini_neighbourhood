@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const API = axios.create({ baseURL: 'http://localhost:5000' });
-//const API = axios.create({ baseURL: 'https://mini-neighbourhood-2tf4-7ryh-main-afxatgjf6a-wm.a.run.app' });
+//const API = axios.create({ baseURL: 'http://localhost:5000' });
+const API = axios.create({ baseURL: 'https://mini-neighbourhood-qz1w-ga3v-main-afxatgjf6a-wm.a.run.app' });
 
 API.interceptors.request.use((req) => {
   if (localStorage.getItem('profile')) {
