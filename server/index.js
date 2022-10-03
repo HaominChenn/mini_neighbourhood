@@ -18,9 +18,9 @@ app.use(cors());
 app.use('/posts', postRoutes);
 app.use('/users',userRoutes)
 //const CONNECTION_URL = "mongodb+srv://haomin:haomin@minineighbourhood.krps8.mongodb.net/miniNeighbourhood?retryWrites=true&w=majority";
-//const CONNECTION_URL="mongodb+srv://haomin:haomin@cluster0.sxblk0c.mongodb.net/?retryWrites=true&w=majority"
+const CONNECTION_URL="mongodb+srv://haomin:haomin@cluster0.sxblk0c.mongodb.net/?retryWrites=true&w=majority"
 const PORT= process.env.PORT || 5000;
-mongoose.connect(process.env.CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
 // return a promise, call back function if successfully show log 
 .then(() => app.listen(PORT, () => console.log(`Server Running on Port: http://localhost:${PORT}`)))
   .catch((error) => console.log(error.message));

@@ -15,7 +15,7 @@ import moment from 'moment';
 import { useDispatch } from 'react-redux';
 import { deletePost, likePost } from '../../../actions/posts.js';
 import ThumbUpAltOutlined from '@material-ui/icons/ThumbUpAltOutlined';
-
+import errorPic from '../../../images/errorpic.png'
 const Post = ({ post, setCurrentId }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -37,7 +37,7 @@ const Post = ({ post, setCurrentId }) => {
     <Card className={classes.card}>
       <CardMedia
         className={classes.media}
-        image={post.selectedFile}
+        image={post.selectedFile || errorPic}
         title={post.title}
       />
       <div className={classes.overlay}>

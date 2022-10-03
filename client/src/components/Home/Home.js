@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef } from 'react';
+import React, {useState, useEffect } from 'react';
 import { Container, Grow, Grid } from '@material-ui/core';
 import Posts from '../Posts/Posts.js';
 import Form from '../Form/Form.js';
