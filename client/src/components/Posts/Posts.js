@@ -4,8 +4,9 @@ import useStyles from './styles.js';
 import { useSelector } from 'react-redux';
 import { Grid, CircularProgress } from '@material-ui/core';
 
-const Posts = ({setCurrentId}) => {
+const Posts = ({post, setCurrentId}) => {
   const classes = useStyles();
+
   //fetch data all the posts
   const posts = useSelector((state) => state.posts);
 
