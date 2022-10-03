@@ -1,4 +1,4 @@
-import React, {useState, useEffect } from 'react';
+import React, {useState, useEffect, useRef } from 'react';
 import { Container, Grow, Grid } from '@material-ui/core';
 import Posts from '../Posts/Posts.js';
 import Form from '../Form/Form.js';
@@ -8,15 +8,16 @@ import useStyles from './styles.js';
 
 
 const Home = () => {
-    const classes = useStyles();
+  const classes = useStyles();
   const [currentId, setCurrentId] = useState(0);
-
+  
   //a dispatch hook
   const dispatch = useDispatch();
+
   useEffect(() => {
-    //callback function
     dispatch(getPosts());
-  }, [dispatch]);
+  
+  }, [currentId,dispatch]);
 
   return (
     <Grow in>
