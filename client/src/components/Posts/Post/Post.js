@@ -23,7 +23,7 @@ const Post = ({ post, setCurrentId }) => {
 
   const Likes = () => {
     if (post?.likes?.length > 0) {
-      return post.likes.find((like) => like === (user?.result?.googleId || user?.result?._id))
+      return post.likes.find((like) => like === (user?.result?.sub || user?.result?._id))
         ? (
           <><ThumbUpAltIcon fontSize="small" />&nbsp;{post.likes.length > 2 ? `You and ${post.likes.length - 1} others` : `${post.likes.length} like${post.likes.length > 1 ? 's' : ''}` }</>
         ) : (
@@ -46,7 +46,7 @@ const Post = ({ post, setCurrentId }) => {
           {moment(post.createdAt).fromNow()}
         </Typography>
       </div>
-      {(user?.result?.googleId === post?.creator || user?.result?._id === post?.creator) && (
+      {(user?.result?.sub === post?.creator || user?.result?._id === post?.creator) && (
       <div className={classes.overlay2}>
         <Button
           style={{ color: 'white' }}
@@ -83,7 +83,7 @@ const Post = ({ post, setCurrentId }) => {
         >
           <Likes />
         </Button>
-        {(user?.result?.googleId === post?.creator ||
+        {(user?.result?.sub === post?.creator ||
           user?.result?._id === post?.creator) && (
           <Button
             size='small'
