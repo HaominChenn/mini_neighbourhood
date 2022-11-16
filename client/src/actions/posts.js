@@ -1,5 +1,5 @@
 import * as api from '../api/index.js';
-import { FETCH_ALL, CREATE, UPDATE, DELETE, LIKE } from '../constants/actionTypes.js';
+import { FETCH_ALL, FETCH_BY_SEARCH, CREATE, UPDATE, DELETE, LIKE } from '../constants/actionTypes.js';
 //action creators are functions that return an action
 //that is a object has a type and payload
 //with redux thunk can deal with asynchronous logic
@@ -15,7 +15,18 @@ export const getPosts = () => async (dispatch) => {
     console.log(error.message);
   }
 };
-
+//add search function
+export const getPostsBySearch = (searchQuery) => async (dispatch) => {
+  try {
+  // dispatch({ type: START_LOADING });
+    const {  data: {data} } = await api.fetchPostsBySearch(searchQuery);
+console.log(data);
+  dispatch({ type: FETCH_BY_SEARCH, payload:  data  });
+ //dispatch({ type: END_LOADING });
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export const createPost = (post) => async (dispatch) => {
     try {
