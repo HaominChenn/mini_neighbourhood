@@ -1,7 +1,8 @@
+import express from 'express';
 import PostMessage from '../models/postMessage.js';
 import mongoose from 'mongoose';
 
-
+const router = express.Router();
 //create all the handlers of posts for our routes
 // get all the posts
 export const getPosts = async (req, res) => {
@@ -81,3 +82,20 @@ export const likePost = async (req, res) => {
 
   res.status(200).json(updatedPost);
 };
+
+export const getPostsBySearch = async (req, res) => {
+  const { searchQuery, tags } = req.query;
+
+  try {
+      const title = new RegExp(searchQuery, "i");
+
+      const posts = await PostMessage.find(
+        { $or: [ { title }, { tags: { $in: tags.split(',') } } ]});
+
+      res.json({ data: posts });
+  } catch (error) {    
+      res.status(404).json({ message: error.message });
+  }
+}
+
+export default router;

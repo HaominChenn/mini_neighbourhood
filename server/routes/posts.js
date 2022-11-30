@@ -1,6 +1,7 @@
 import express from 'express';
 import {
   getPosts,
+  getPostsBySearch,
   createPost,
   updatePost,
   deletePost,
@@ -17,4 +18,7 @@ router.patch('/:id', auth,updatePost);
 router.delete('/:id', auth,deletePost);
 //use patch, like will update the numbers
 router.patch('/:id/likePost', auth,likePost);
+
+router.get('/search', getPostsBySearch);
+
 export default router;
